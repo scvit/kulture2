@@ -81,7 +81,7 @@ function FunLoadingBarStart(){
 	var backGroundCover = "<div id='back'></div>"; //뒷 배경을 감쌀 커버
 	var loadingBarImage = ''; //가운데 띄워 줄 이미지
 	loadingBarImage += "<div id='loadingBar'>";
-	loadingBarImage += " <img src='assets/img/load-unscreen.gif' width='100px' height='auto' '> "; //로딩 바 이미지
+	loadingBarImage += " <img src='assets/img/load-unscreen.gif' width='100px' height='auto' > "; //로딩 바 이미지
 	loadingBarImage += "</div>";
 	$('body').append(backGroundCover).append(loadingBarImage);
 	$('#back').css({ 'width': backWidth, 'height': backHeight, 'opacity': '0.3' });
