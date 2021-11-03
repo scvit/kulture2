@@ -63,7 +63,7 @@
 
 <form action="pwCheck" name="chk" method="post">
 <input type="hidden" name="id" value="${sessionScope.id }">
-PASSWORD :&nbsp;&nbsp;&nbsp; <input class="textarea2" id ="pwchk" name = "pw" type="password" name="pw" maxlength="4" placeholder="4-digit">
+PASSWORD :&nbsp;&nbsp;&nbsp; <input class="textarea2" id ="pwchk" name = "pw" type="password" name="pw" maxlength="10" placeholder="10-digit">
 &nbsp;&nbsp;&nbsp;<input type="button" class="btn-primary btn-xl2" id ="pwchkBtn" value="OK">
 </form>
 <br>
