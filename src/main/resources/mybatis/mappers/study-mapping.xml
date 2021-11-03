@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="study.StudyDAO" >
+
+<insert id="saveStudy" parameterType="studyinfoVO"> <!--parametertype = study.studyinfoVO->> studyinfoVO객체타입으로 전달해줄게 -->
+insert into studyinfo (member_id, num, title, study_memo1, study_memo2, study_date) 
+values( #{member_id}, null, #{title}, #{study_memo1}, #{study_memo2}, #{study_date} )
+</insert>
+
+<select id="studyList" resultType="studyinfoVO">
+select * from studyinfo
+</select>
+
+<select id="studyid" resultType="String">
+select max(num)+1 from studyinfo
+</select>
+
+<update id="updateStudy" parameterType="studyinfoVO">
+update studyinfo
+set title=#{title}, study_memo1=#{study_memo1}, study_memo2=#{study_memo2}
+where member_id=#{member_id} and num=#{num}
+</update>
+
+<select id="studyList2" resultType="studyinfoVO" parameterType="studyinfoVO">
+select member_id, num, title, study_memo1, study_memo2, study_date from studyinfo where member_id=#{member_id} and title=#{title}
+</select>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
