@@ -31,18 +31,29 @@ public class TestController2 {
 	
 		
 	@RequestMapping("/studylist")
-	public ModelAndView resultlist(String title, HttpServletRequest request,@RequestParam(name="click_id", required=false) String click_id,String member_id ) {
+	public ModelAndView resultlist(String title, HttpServletRequest request,@RequestParam(name="click_id", required=false) String click_id, String member_id ) {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		String current_id = (String)session.getAttribute("id");
 		System.out.println("current_id = " + current_id);
 		System.out.println("click_id = " + click_id);
-		List<StudyInfoVO> studyinfolist = service.StudyinfoList(click_id);
-		mv.addObject("studyinfolist", studyinfolist);
-		mv.addObject("member_id", click_id);
-		mv.setViewName("/list/studylist");
-		return mv;
+		if(current_id.equals("admin")) {
+			List<StudyInfoVO> studyinfolist = service.StudyinfoList(click_id);
+			mv.addObject("studyinfolist", studyinfolist);
+			mv.addObject("member_id", click_id);
+			mv.setViewName("/list/studylist");
+			return mv;
+			
+		}
+		else {
+			List<StudyInfoVO> studyinfolist = service.StudyinfoList(current_id);
+			mv.addObject("studyinfolist", studyinfolist);
+			mv.addObject("member_id", current_id);
+			mv.setViewName("/list/studylist");
+			return mv;
+		}
 	}
+
 	
 	
 	
