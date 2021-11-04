@@ -35,12 +35,12 @@ $(document).ready(function(){
 		var id = $("#id").val();
 		var pw = $("#pw").val();
 		if(id==""){
-			alert("아이디를 입력하세요.");
+			alert("Please enter the ID.");
 			$("#id").focus();//입력포커스 이동
 			return;//함수종료
 		}
 		if(pw==""){
-			alert("비밀번호를 입력하세요.");
+			alert("Please enter the password.");
 			$("#pw").focus();//입력포커스 이동
 			return;//함수종료
 		}
@@ -57,7 +57,7 @@ function checkValue()
 {  
     // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
     if(document.updateform.pw.value != document.updateform.pwchk.value ){
-        alert("비밀번호를 동일하게 입력하세요.");
+        alert("Please enter the same password.");
         return false;
     }
 }
@@ -75,7 +75,7 @@ function deleteMember(){
 			
 			//dataType:'json',
 			success: function(msg){
-				alert("success 수정");
+				alert("success");
 			},//success
 			error:function(e){alert("error")},
 			//complete:function(){alert("완료 ")}

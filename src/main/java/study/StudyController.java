@@ -3,23 +3,18 @@ package study;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.MemberService;
-import member.MemberVO;
 import users.StudyInfoVO;
 import users.UsersService;
 
@@ -52,34 +47,21 @@ public class StudyController {
 	}
 	
 	//제목누르면 글쓰기 페이지로 이동
-	/*
-	@RequestMapping(value = "/gotoStudy", method = RequestMethod.GET)
-	public ModelAndView gotoStudy(@ModelAttribute StudyInfoVO vo, HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<StudyInfoVO> list = studyservice.studyList2(vo);
-		mv.addObject("result", list);
-		mv.setViewName("/study/aboutstudy"); 
-		return mv;
-	}*/
-	
-	//제목누르면 글쓰기 페이지로 이동
 		@RequestMapping(value = "/gotoStudy", method = RequestMethod.GET)
-		public ModelAndView gotoStudy(String title, HttpSession session, HttpServletResponse response) throws Exception{
+		public ModelAndView gotoStudy(String title, HttpSession session, HttpServletResponse response, String member_id) throws Exception{
+			System.out.println(member_id);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			String member_id = (String)session.getAttribute("id");//리턴타입이 object라서 형변환 필요
 			ModelAndView mv = new ModelAndView();
-			if(member_id.equals("admin")) {
-				out.println("<script>alert('Error : Member's Privacy!')");
-				out.println("history.back()");
-				//out.println("location.reload()");
-				out.println("</script>");
-				out.close();
-				List<StudyInfoVO> studyinfolist = userservice.StudyinfoList(member_id);
-				//mv.addObject("studyinfolist", out);
-				mv.setViewName("/list/studylist");
+			String id = (String)session.getAttribute("id");//리턴타입이 object라서 형변환 필요
+			System.out.println(id);
+			if(id.equals("admin")) {
+				List<StudyInfoVO> list = studyservice.studyList2(title, member_id);
+				mv.addObject("result", list);
+				mv.setViewName("/study/aboutstudy");
 				return mv;
 			}else {
+//				String member_id = id;
 				List<StudyInfoVO> list = studyservice.studyList2(title, member_id);
 				mv.addObject("result", list);
 				mv.setViewName("/study/aboutstudy"); 

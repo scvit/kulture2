@@ -37,11 +37,10 @@ select * from member
 update member
 set pw = #{pw}, email=#{email}, phone_number=#{phone_number}, nickname=#{nickname}
 where id=#{id}
-
 </update>
 
 <delete id="deletemember" parameterType="String">
-delete from member and studyinfo where id=#{id}
+delete from member where id=#{id}
 </delete>
 
 </mapper>

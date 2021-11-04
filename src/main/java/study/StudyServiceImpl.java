@@ -33,6 +33,12 @@ public class StudyServiceImpl implements StudyService {
 		List<StudyInfoVO> list2 = dao.studyList2(title, member_id);
 		return list2; 
 	}
+
+	@Override
+	public List<StudyInfoVO> studyList2(StudyInfoVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

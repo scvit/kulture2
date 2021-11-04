@@ -29,56 +29,20 @@ public class TestController2 {
 	@Qualifier("userservice")
 	UsersService service;
 	
-
+		
 	@RequestMapping("/studylist")
-	public ModelAndView resultlist(String title, String member_id, HttpServletRequest request, @RequestParam(name="admin_id", required=false) String admin_id) {
+	public ModelAndView resultlist(String title, HttpServletRequest request,@RequestParam(name="click_id", required=false) String click_id,String member_id ) {
 		ModelAndView mv = new ModelAndView();
-		StudyInfoVO vo = new StudyInfoVO();
 		HttpSession session = request.getSession();
-//		List<StudyInfoVO> userslist = service.UsersList();
 		String current_id = (String)session.getAttribute("id");
-		List<StudyInfoVO> studyinfolist = service.StudyinfoList(current_id);
-		System.out.println(current_id);
-//		System.out.println(studyinfolistall);
-		if (current_id.equals("admin")) {
-			List<StudyInfoVO> studyinfolistall = service.StudyinfoListAll();
-			mv.addObject("studyinfolistall", studyinfolistall);
-			mv.addObject("admin_id", admin_id);
-			mv.setViewName("/list/studylistadmin");
-		}
-		else {
-			vo.setTitle(title);
-			vo.setMember_id(member_id);
-			mv.addObject("studyinfolist", studyinfolist);
-			mv.setViewName("/list/studylist");
-		}
+		System.out.println("current_id = " + current_id);
+		System.out.println("click_id = " + click_id);
+		List<StudyInfoVO> studyinfolist = service.StudyinfoList(click_id);
+		mv.addObject("studyinfolist", studyinfolist);
+		mv.addObject("member_id", click_id);
+		mv.setViewName("/list/studylist");
 		return mv;
 	}
-		/*
-	@RequestMapping("/studylist")
-	public ModelAndView resultlist(String title, String member_id, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-		StudyInfoVO vo = new StudyInfoVO();
-		HttpSession session = request.getSession();
-		String current_id = (String)session.getAttribute("id");
-//		List<StudyInfoVO> userslist = service.UsersList();
-		List<StudyInfoVO> studyinfolist = service.StudyinfoList(current_id);
-//		System.out.println(current_id);
-//		System.out.println(studyinfolistall);
-		if (current_id.equals("admin")) {
-			List<StudyInfoVO> studyinfolistall = service.StudyinfoList(current_id);
-			mv.addObject("studyinfolistall", studyinfolistall);
-			mv.addObject("admin_id", current_id);
-			mv.setViewName("/list/studylist_admin");
-		}
-		else {
-			vo.setTitle(title);
-			vo.setMember_id(member_id);
-			mv.addObject("studyinfolist", studyinfolist);
-			mv.setViewName("/list/studylist");
-		}
-		return mv;
-	}*/
 	
 	
 	

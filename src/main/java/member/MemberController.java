@@ -46,23 +46,19 @@ public class MemberController {
 	}
 	
 	//회원가입 post
-	@RequestMapping(value = "/insertmember", method = RequestMethod.POST)
-	public ModelAndView insertMember(MemberVO vo) throws Exception{
-		ModelAndView mv = new ModelAndView(); 
-		//String email = email1+email2+email3;
-		//System.out.println(email);
-		service.insertMember(vo);
-		mv.addObject("result", "Welcome to Kulture!");
-		/*
-		if(service.memberOne(vo.getId())!=null) {
-			mv.addObject("result", "id 중복입니다. 다른 아이디 입력하세요");
-		}else {
-			service.insertMember(vo);
-			mv.addObject("result", "회원가입 되셨습니다.");
-		}*/
-		mv.setViewName("/member/insertmember_css"); 
-		return mv;
-	}
+    @RequestMapping(value = "/insertmember", method = RequestMethod.POST)
+    public ModelAndView insertMember(MemberVO vo) throws Exception{
+       ModelAndView mv = new ModelAndView(); 
+       if(service.memberOne(vo.getId())!=null) {
+          mv.addObject("result", "Your ID is already existed. <br> Check your ID again.");
+       }else {
+          service.insertMember(vo);
+          mv.addObject("result", "Welcome to Kulture!");
+       }
+       mv.setViewName("/member/insertmember_css"); 
+       return mv;
+    }
+	   
 	//아이디 중복 체크
     @RequestMapping("/idCheck")
     @ResponseBody
@@ -147,41 +143,36 @@ public class MemberController {
 			mv.setViewName("/login/main_css");
 			return mv;
 		}
-	
-	
-	//로그인
-	@RequestMapping(value="/main", method = RequestMethod.POST)
-	public ModelAndView main(@ModelAttribute MemberVO vo, HttpSession session, HttpServletResponse response)throws Exception{
-		boolean result = service.memberLogin(vo, session);
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		ModelAndView mv = new ModelAndView();
-		if(result == true) {//로그인 성공
-			if(vo.getId().equals("admin")) {
-				List<MemberVO> list = service.memberList();
-				mv.addObject("msg", "Admin Page");
-				mv.addObject("memberlist", list);
-				mv.setViewName("/login/admin_css");
-			}else {
-				mv.addObject("msg", "success");	
-				mv.setViewName("/login/main_css2");
-			}
-		}
-		else {//로그인 실패
-			out.println("<script>alert('Error : Check ID and Password again!') ");
-			out.println("history.back()");
-			out.println("location.reload()");
-			out.println("</script>");
-			out.close();
-			mv.addObject("msg", "failure");
-			mv.setViewName("/login/main_css");
-		}
-		List<ContentsVO> contentslist = contentservice.contentsList();
-		mv.addObject("contentslist", contentslist);
 		
-		return mv;
-	}
-
+	//로그인
+	   @RequestMapping(value="/main", method = RequestMethod.POST)
+	   public ModelAndView main(@ModelAttribute MemberVO vo, HttpSession session, HttpServletResponse response)throws Exception{
+	      boolean result = service.memberLogin(vo, session);
+	      response.setContentType("text/html; charset=UTF-8");
+	      PrintWriter out = response.getWriter();
+	      ModelAndView mv = new ModelAndView();
+	      if(result == true) {//로그인 성공
+	         if(vo.getId().equals("admin")) {
+	            mv.setViewName("/login/admin_main");
+	         }else {
+	            mv.addObject("msg", "success");   
+	            mv.setViewName("/login/main_css2");
+	         }
+	      }
+	      else {//로그인 실패
+	         out.println("<script>alert('Error : Check ID and Password again!') ");
+	         out.println("history.back()");
+	         out.println("location.reload()");
+	         out.println("</script>");
+	         out.close();
+	         mv.addObject("msg", "failure");
+	         mv.setViewName("/login/main_css");
+	      }
+	      List<ContentsVO> contentslist = contentservice.contentsList();
+	      mv.addObject("contentslist", contentslist);
+	      
+	      return mv;
+	   }
 	
 	//로그아웃
 	@RequestMapping("/logout")

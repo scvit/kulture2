@@ -42,12 +42,12 @@ $(document).ready(function(){
 		var id = $("#id").val();
 		var pw = $("#pw").val();
 		if(id==""){
-			alert("아이디를 입력하세요.");
+			alert("Please enter the ID.");
 			$("#id").focus();//입력포커스 이동
 			return;//함수종료
 		}
 		if(pw==""){
-			alert("비밀번호를 입력하세요.");
+			alert("Please enter the password.");
 			$("#pw").focus();//입력포커스 이동
 			return;//함수종료
 		}

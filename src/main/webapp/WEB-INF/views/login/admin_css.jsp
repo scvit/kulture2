@@ -36,12 +36,12 @@ $(document).ready(function(){
 		var id = $("#id").val();
 		var pw = $("#pw").val();
 		if(id==""){
-			alert("아이디를 입력하세요.");
+			alert("Please enter the ID.");
 			$("#id").focus();//입력포커스 이동
 			return;//함수종료
 		}
 		if(pw==""){
-			alert("비밀번호를 입력하세요.");
+			alert("Please enter the password.");
 			$("#pw").focus();//입력포커스 이동
 			return;//함수종료
 		}
@@ -98,7 +98,7 @@ function deleteMember(id){
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     	<li class="nav-item"><a class="nav-link">${sessionScope.nickname }</a></li>
-                        <li class="nav-item"><a class="nav-link" href='/admin'>admin</a></li> 
+                        <li class="nav-item"><a class="nav-link" href='/admin'>Admin</a></li> 
                         <li class="nav-item"><a class="nav-link" href="/study">Study</a></li>
                         <li class="nav-item"><a class="nav-link" href='/studylist'>My list</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mypage">My page</a></li>
@@ -155,7 +155,7 @@ td{
 <c:forEach items="${memberlist }" var="membervo">
 <tr>
 <form action="studylist">
-	<td><input name="admin_id" type="submit" value="${membervo.id }"></td>
+	<td><input name="click_id" type="submit" value="${membervo.id }"></td>
 </form>
 	<td><c:out value="${membervo.id }"/></td>
 	<td><c:out value="${membervo.pw }"/></td>

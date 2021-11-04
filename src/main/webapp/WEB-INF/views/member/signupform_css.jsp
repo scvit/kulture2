@@ -42,12 +42,12 @@ $(document).ready(function(){
 		var id = $("#id").val();
 		var pw = $("#pw").val();
 		if(id==""){
-			alert("아이디를 입력하세요.");
+			alert("Please enter the ID.");
 			$("#id").focus();//입력포커스 이동
 			return;//함수종료
 		}
 		if(pw==""){
-			alert("비밀번호를 입력하세요.");
+			alert("Please enter the password.");
 			$("#pw").focus();//입력포커스 이동
 			return;//함수종료
 		}
@@ -63,18 +63,18 @@ $(document).ready(function(){
 function checkValue()
 {
     if(!document.userInfo.id.value){
-        alert("아이디를 입력하세요.");
+        alert("Please enter the ID.");
         return false;
     }
     
     if(!document.userInfo.pw.value){
-        alert("비밀번호를 입력하세요.");
+        alert("Please enter the password.");
         return false;
     }
     
     // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
     if(document.userInfo.pw.value != document.userInfo.pwchk.value ){
-        alert("비밀번호를 동일하게 입력하세요.");
+        alert("Please enter the same password.");
         return false;
     }
 }
@@ -96,9 +96,9 @@ function idCheck() {
 		dataType:'json',
 		success: function(count){
 			if(count>0){
-				alert("해당아이디가 존재합니다.");
+				alert("Already exists.");
 			}else{
-				alert("사용가능한 아이디 입니다.")
+				alert("Available.")
 			}
 		},//success
 		error:function(e){alert("error")}

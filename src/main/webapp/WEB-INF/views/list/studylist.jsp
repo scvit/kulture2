@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 List<StudyInfoVO> studyinfolist = (List<StudyInfoVO>)request.getAttribute("studyinfolist");
-String admin_id = (String)request.getAttribute("admin_id");
+String member_id = (String)request.getAttribute("member_id");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,8 +72,9 @@ String admin_id = (String)request.getAttribute("admin_id");
     <tr>
     	<td style="text-align:left">
     		<input id="title1" name="title1" type="checkbox" value="<%=studyinfolist.get(i).getTitle()%>" checkid='checked'></input>
-     
-     <a id="<%=studyinfolist.get(i).getTitle()%>" href='/gotoStudy?title=<%=studyinfolist.get(i).getTitle()%>' onclick="gotoStudybtn()"><%=studyinfolist.get(i).getTitle()%></a> <small><%=studyinfolist.get(i).getStudy_date() %></small>
+     <a href='/gotoStudy?title=<%=studyinfolist.get(i).getTitle()%>&member_id=<%=member_id%>'><%=studyinfolist.get(i).getTitle()%></a>
+      <small><%=studyinfolist.get(i).getStudy_date() %></small>
+      <input type="text" hidden=member_id/>
      		 
     	</td>
 	</tr>
@@ -90,8 +91,11 @@ String admin_id = (String)request.getAttribute("admin_id");
 
 <script src="jquery-3.2.1.min.js"></script>
 <script>
-function gotoStudy(){
-	location.href="";
+function send(frm){
+	var click_id = document.getElementByName("click_id").value
+	alert(click_id);
+	frm.action = "/gotoStudy";
+	frm.submit();
 }
 
 function submitform(title, member_id){
@@ -101,6 +105,12 @@ function submitform(title, member_id){
 </script>
 
 <style>
+input.click{
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+	cursor: pointer;
+}
 div#box1{
 	display: flex;
 	justify-content:center;
@@ -130,8 +140,7 @@ input{
 }
 small{
 	text-align: right;
-	margin-right: 5px;
-	margin-left: 70%;
+	float: right;
 }
 </style>
 <div id="space"></div>
