@@ -346,7 +346,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 					<div style="height: 50px">You can write notes</div>
 					<div>
 					    <input class="textarea" type="hidden" name="member_id" value="${sessionScope.id}">
-					    <input class="textarea" name="member_id2" value="${sessionScope.id}">
 					</div>
 					<div>
 					    <input class="textarea" type="hidden" name="num">
