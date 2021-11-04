@@ -146,7 +146,7 @@ position:fixed;
 		<h4 class="text-center">Quotes</h4>
 			<hr class="divider3" />	
 	  		<p class="text-center"><%=contentslist.get(i).getContent_quotes() %></p>
-	  		 <p id="ko_content"><%=contentslist.get(i).getContent_quotes_ko() %> </p>
+	  		 <p class="text-center" id="ko_content"><%=contentslist.get(i).getContent_quotes_ko() %> </p>
 	
 	 <br>
 <!-- 컨텐츠 은어, 은어설명 -->	
@@ -154,8 +154,8 @@ position:fixed;
 		<h4 class="text-center">Hidden Meaning</h4>
 			<hr class="divider3" />
 			<p class="text-center" id="ko_content"><%=contentslist.get(i).getContent_slang() %></p>
-			<p class="text-left"><%=contentslist.get(i).getContent_slang_desc() %></p>
-			 <p id="ko_content"><%=contentslist.get(i).getContent_slang_desc_ko() %></p>
+			<p class="text-center"><%=contentslist.get(i).getContent_slang_desc() %></p>
+			 <p class="text-center" id="ko_content"><%=contentslist.get(i).getContent_slang_desc_ko() %></p>
 	 </div>
 	</div>
   </div>
