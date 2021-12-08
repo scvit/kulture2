@@ -190,12 +190,32 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
         
 <!-- service -->
+<style>
+.page-section {
+  padding: 8rem 0; /* 위아래, 오른왼 */
+}
+
+.rl1.5 {
+  padding-right: 1.5rem !important;
+  padding-left: 1.5rem !important;
+}
+.wd33{
+    width: 33.33333333%;
+}
+  
+.fw{
+display:flex;
+flex-wrap:wrap;
+}
+</style>
+
 <section class="page-section">
 
-<div class="container px-4 px-lg-5">
-<div class="row gx-4 gx-lg-5" >
+ <div class="container rl1.5">
+<div class="fw">
+ 
 	
-	<div class="col-lg-4 col-md-4 text-center">  		
+	 <div class="wd33 text-center">  		
 		<div id="TTSservice" align="center">                        
 			<div><h2>Text To Sound</h2></div>	
 			<hr class="divider" />
@@ -219,7 +239,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		</div>
 	</div>
 
- 	<div class="col-lg-4 col-md-4 text-center"> 
+ 	<div class="wd33 text-center"> 
 		<div id="STTservice" align="center">
 			<div><h2>Sound To Text</h2></div>
 			<hr class="divider" />
@@ -262,7 +282,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		</div>		
 	</div>
 	
-	<div class="col-lg-4 col-md-4 text-center"> 
+	<div class="wd33 text-center"> 
 		<div id="Studyservice" align="center"> 
 		<div><h2>Study</h2></div>
 		<hr class="divider" />
